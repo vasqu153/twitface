@@ -83,10 +83,10 @@ print "---------------------------------------------------------------------"
 # access keys from previous Twitter API access
 # hidden until needed
 
-#CONSUMER_KEY = 'fnPVH549kP1mvgFz6Tx6bJR0w'
-#CONSUMER_SECRET = '3JTfV59r1lVTLpPwhTe9J1tYHXjF9PQQdJw1eowLWHhw3sbhC7'
-#OAUTH_TOKEN = '1047526571349692418-tuBUVuPo98ti7l9KMZ9LTZTxnI0z3J'
-#OAUTH_TOKEN_SECRET = 'PASCqJKKCovbPLpiSZtx4isnygOhPXRhCHlVJf6xUOo5F'
+#CONSUMER_KEY = ''
+#CONSUMER_SECRET = ''
+#OAUTH_TOKEN = ''
+#OAUTH_TOKEN_SECRET = ''
 #auth = twitter.oauth.OAuth(OAUTH_TOKEN, OAUTH_TOKEN_SECRET,
                            #CONSUMER_KEY, CONSUMER_SECRET)
 
