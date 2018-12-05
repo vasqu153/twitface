@@ -17,8 +17,8 @@
 
 # Connect to Twitter API and Facebok API
 
- import twitter #hidden until needed for code
-# import json #hidden until needed
+import twitter #hidden until needed for code
+import json #hidden until needed
 
 # Connecting to Twitter API
 
@@ -36,10 +36,10 @@ auth = twitter.oauth.OAuth(OAUTH_TOKEN, OAUTH_TOKEN_SECRET,
 
 twitter_api = twitter.Twitter(auth=auth)
 
-#print "Test to check that connecction is successful"
-#print
-#print twitter_api
-#print
+print "Test to check that connecction is successful"
+print
+print twitter_api
+print
 
 print "---------------------------------------------------------------------"
 print ''
@@ -100,7 +100,7 @@ while True:
         while True:
             answer = raw_input('(y/n): ')
             if answer in ('y'):
-                twitter_api.PostUpdate(status)
+                twitter_api.postupdate(status)
                 print ""
                 print 'Your status has successfully been posted'
                 print 'Thanks for using TwitFace!'
