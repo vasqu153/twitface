@@ -17,12 +17,34 @@
 
 # Connect to Twitter API and Facebok API
 
-# import twitter #hidden until needed for code
+ import twitter #hidden until needed for code
 # import json #hidden until needed
+
+# Connecting to Twitter API
+
+print 'Connecting to Twitter'
+
+# access keys from previous Twitter API access
+# hidden until needed
+
+CONSUMER_KEY = ''
+CONSUMER_SECRET = ''
+OAUTH_TOKEN = ''
+OAUTH_TOKEN_SECRET = ''
+auth = twitter.oauth.OAuth(OAUTH_TOKEN, OAUTH_TOKEN_SECRET,
+                           CONSUMER_KEY, CONSUMER_SECRET)
+
+twitter_api = twitter.Twitter(auth=auth)
+
+#print "Test to check that connecction is successful"
+#print
+#print twitter_api
+#print
+
 print "---------------------------------------------------------------------"
 print ''
 print "Welcome to TwitFace!"
-print ''  
+print ''
     #print"Please enter your login credentials for Twitter: "
     #print
     #print "Username: "
@@ -78,36 +100,15 @@ while True:
         while True:
             answer = raw_input('(y/n): ')
             if answer in ('y'):
+                twitter_api.PostUpdate(status)
                 print ""
                 print 'Your status has successfully been posted'
+                print 'Thanks for using TwitFace!'
                 print ""
             if answer == 'y':
                 exit()
 # loops back to beginning to reprompt user input
             if answer in ('n'):
                 exit()
-
-print "---------------------------------------------------------------------"
-
-# Connecting to Twitter API
-
-#print 'Connecting to Twitter'
-
-# access keys from previous Twitter API access
-# hidden until needed
-
-#CONSUMER_KEY = ''
-#CONSUMER_SECRET = ''
-#OAUTH_TOKEN = ''
-#OAUTH_TOKEN_SECRET = ''
-#auth = twitter.oauth.OAuth(OAUTH_TOKEN, OAUTH_TOKEN_SECRET,
-                           #CONSUMER_KEY, CONSUMER_SECRET)
-
-#twitter_api = twitter.Twitter(auth=auth)
-
-#print "Test to check that connecction is successful"
-#print
-#print twitter_api
-#print
 
 print "---------------------------------------------------------------------"
