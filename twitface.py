@@ -22,8 +22,8 @@ import json
 import urlparse
 import oauth2 as oauth
 
-consumer_key = 'pkxbUr2VzuYYJfxkE8I6BkYIZ'
-consumer_secret = '40xcGvhXFRiQoSs5QqQBK51ajZBZ93UTvl1GW3c08BTHb1NaiO'
+consumer_key = '99C8BGVyzxBbWEi6BY2MhDzLE'
+consumer_secret = 'tXYlzIsi99Oa8GpFF65Q2QVKgYTHAUowWrMqbKR7sADXeHfvDc'
 
 request_token_url = 'https://api.twitter.com/oauth/request_token'
 access_token_url = 'https://api.twitter.com/oauth/access_token'
