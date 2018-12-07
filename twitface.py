@@ -78,7 +78,9 @@ print "---------------------------------------------------------------------"
 
 print 'Connecting to Twitter'
 
-twitter_api = twitter.Twitter(consumer_key = consumer_key, consumer_secret = consumer_secret, access_token_key = access_token['oauth_token'], access_token_secret = access_token['oauth_token_secret'])
+auth = twitter.oauth.OAuth(access_token['oauth_token'], access_token['oauth_token_secret'], consumer_key, consumer_secret)
+#twitter_api = twitter.API(consumer_key = consumer_key, consumer_secret = consumer_secret, access_token_key = access_token['oauth_token'], access_token_secret = access_token['oauth_token_secret'])
+twitter_api = twitter.Twitter(auth=auth)
 
 print "Test to check that connecction is successful"
 print
