@@ -17,24 +17,68 @@
 
 # Connect to Twitter API and Facebok API
 
-import twitter #hidden until needed for code
-import json #hidden until needed
+import twitter
+import json
+import urlparse
+import oauth2 as oauth
+
+consumer_key = 'P8qYXSmm4Xy77ru7hRm0r22zU'
+consumer_secret = '80JAMe4FnhrtgrlFWeRthxe9cj9CxdG4PK3yvsVA1LOrL6cKFd'
+
+request_token_url = 'https://api.twitter.com/oauth/request_token'
+access_token_url = 'https://api.twitter.com/oauth/access_token'
+authorize_url = 'https://api.twitter.com/oauth/authorize'
+
+consumer = oauth.Consumer(consumer_key, consumer_secret)
+client = oauth.Client(consumer)
+
+# Getting request token
+
+resp, content = client.request(request_token_url, "GET")
+if resp['status'] != '200':
+    raise Exception("Invalid response %s." % resp['status'])
+
+request_token = dict(urlparse.parse_qsl(content))
+
+print "Request Token:"
+print "    - oauth_token        = %s" % request_token['oauth_token']
+print "    - oauth_token_secret = %s" % request_token['oauth_token_secret']
+print
+
+# Redirect to allow access
+
+print "Go to the following link in your browser:"
+print "%s?oauth_token=%s" % (authorize_url, request_token['oauth_token'])
+print
+
+# After the user has allowed access, the program continues with verification process
+accepted = 'n'
+while accepted.lower() == 'n':
+    accepted = raw_input('Have you authorized me? (y/n) ')
+oauth_verifier = raw_input('What is the PIN? ')
+
+# Finishing up verification process
+token = oauth.Token(request_token['oauth_token'],
+    request_token['oauth_token_secret'])
+token.set_verifier(oauth_verifier)
+client = oauth.Client(consumer, token)
+
+resp, content = client.request(access_token_url, "POST")
+access_token = dict(urlparse.parse_qsl(content))
+
+print "Access Token:"
+print "    - oauth_token        = %s" % access_token['oauth_token']
+print "    - oauth_token_secret = %s" % access_token['oauth_token_secret']
+print
+print "You may now access protected resources using the access tokens above."
+print
+print "---------------------------------------------------------------------"
 
 # Connecting to Twitter API
 
 print 'Connecting to Twitter'
 
-# access keys from previous Twitter API access
-# hidden until needed
-
-CONSUMER_KEY = ''
-CONSUMER_SECRET = ''
-OAUTH_TOKEN = ''
-OAUTH_TOKEN_SECRET = ''
-auth = twitter.oauth.OAuth(OAUTH_TOKEN, OAUTH_TOKEN_SECRET,
-                           CONSUMER_KEY, CONSUMER_SECRET)
-
-twitter_api = twitter.Twitter(auth=auth)
+twitter_api = twitter.Api(consumer_key = consumer_key, consumer_secret = consumer_secret, access_token_key = access_token['oauth_token'], access_token_secret = access_token['oauth_token_secret'])
 
 print "Test to check that connecction is successful"
 print
@@ -45,12 +89,6 @@ print "---------------------------------------------------------------------"
 print ''
 print "Welcome to TwitFace!"
 print ''
-    #print"Please enter your login credentials for Twitter: "
-    #print
-    #print "Username: "
-    #print "Password: "
-    #print
-    #print "Login successful"
 print "---------------------------------------------------------------------"
 print ''
 print "Here you can either post to twitter with a status of your own, or you can choose from a collection we have provided."
